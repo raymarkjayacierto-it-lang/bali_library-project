@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import './App.css'
 import { Shell } from './components/Layout'
+import { LibraryDataProvider } from './context/LibraryDataProvider'
 import {
   AdminDashboard,
   BooksAdmin,
@@ -67,7 +68,7 @@ function App() {
     }
   }, [page])
 
-  return renderedPage
+  return <LibraryDataProvider>{renderedPage}</LibraryDataProvider>
 }
 
 export default App

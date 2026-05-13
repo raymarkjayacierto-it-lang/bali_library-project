@@ -40,7 +40,16 @@ export function SearchFilters({ placeholder, tabs = ['All', 'Active', 'Overdue',
   )
 }
 
-export function DataTable({ headers, rows, actionIcons = false }: { headers: string[]; rows: string[][]; actionIcons?: boolean }) {
+export function EmptyState({ title = 'No records yet', message = 'Connect the PHP backend or add a new record to show data here.' }: { title?: string; message?: string }) {
+  return (
+    <div className="empty-state">
+      <strong>{title}</strong>
+      <p>{message}</p>
+    </div>
+  )
+}
+
+export function DataTable({ headers, rows, actionIcons = false, emptyMessage }: { headers: string[]; rows: string[][]; actionIcons?: boolean; emptyMessage?: string }) {
   return (
     <div className="table-wrap">
       <table>
@@ -48,19 +57,27 @@ export function DataTable({ headers, rows, actionIcons = false }: { headers: str
           <tr>{headers.map((header) => <th key={header}>{header}</th>)}</tr>
         </thead>
         <tbody>
-          {rows.map((row, rowIndex) => (
-            <tr key={`${row[0]}-${rowIndex}`}>
-              {row.map((cell, cellIndex) => {
-                const isStatus = ['Active', 'Completed', 'Paid', 'Unpaid', 'admin', 'member'].includes(cell)
-                const isActions = actionIcons && cellIndex === row.length - 1
-                return (
-                  <td key={`${cell}-${cellIndex}`}>
-                    {isActions ? <ActionCluster label={cell} /> : isStatus ? <span className={`status ${cell.toLowerCase()}`}>{cell}</span> : cell}
-                  </td>
-                )
-              })}
+          {rows.length === 0 ? (
+            <tr>
+              <td colSpan={headers.length}>
+                <EmptyState message={emptyMessage} />
+              </td>
             </tr>
-          ))}
+          ) : (
+            rows.map((row, rowIndex) => (
+              <tr key={`${row[0]}-${rowIndex}`}>
+                {row.map((cell, cellIndex) => {
+                  const isStatus = ['Active', 'Completed', 'Paid', 'Unpaid', 'admin', 'member'].includes(cell)
+                  const isActions = actionIcons && cellIndex === row.length - 1
+                  return (
+                    <td key={`${cell}-${cellIndex}`}>
+                      {isActions ? <ActionCluster label={cell} /> : isStatus ? <span className={`status ${cell.toLowerCase()}`}>{cell}</span> : cell}
+                    </td>
+                  )
+                })}
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>

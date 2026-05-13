@@ -88,6 +88,25 @@ button {
   color: var(--muted);
 }
 
+.empty-state {
+  background: #f8fafc;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  color: var(--muted);
+  padding: 28px;
+  text-align: center;
+}
+
+.empty-state strong {
+  color: var(--ink);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.empty-state p {
+  margin: 0;
+}
+
 .topbar {
   align-items: center;
   background: #fff;

@@ -28,8 +28,8 @@ function TopBar({ admin = false, onNavigate }: { admin?: boolean; onNavigate: (p
 function Sidebar({ mode, active, onNavigate }: { mode: 'member' | 'admin'; active: Page; onNavigate: (page: Page) => void }) {
   const items = (mode === 'admin' ? adminNav : memberNav) as readonly NavItem[]
   const profile = mode === 'admin'
-    ? { initials: 'MS', name: 'Maria Santos', subtitle: 'Administrator' }
-    : { initials: 'JC', name: 'Juan Cruz', subtitle: 'juan.cruz@email.com' }
+    ? { initials: 'AD', name: 'Admin User', subtitle: 'Administrator' }
+    : { initials: 'MB', name: 'Library Member', subtitle: 'Member account' }
 
   return (
     <aside className="sidebar">

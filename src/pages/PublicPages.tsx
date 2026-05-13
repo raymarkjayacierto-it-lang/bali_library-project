@@ -65,20 +65,20 @@ export function AuthPage({ variant, onNavigate }: { variant: 'login' | 'signin';
         <form onSubmit={(event) => { event.preventDefault(); onNavigate('member-dashboard') }}>
           {signin && (
             <div className="form-grid">
-              <label>First Name<input defaultValue="Juan" /></label>
-              <label>Last Name<input defaultValue="Cruz" /></label>
+              <label>First Name<input placeholder="First name" /></label>
+              <label>Last Name<input placeholder="Last name" /></label>
             </div>
           )}
-          <label>Email Address<input type="email" placeholder="your.email@example.com" defaultValue={signin ? 'juan.cruz@email.com' : ''} /></label>
+          <label>Email Address<input type="email" placeholder="your.email@example.com" /></label>
           {signin && (
             <>
-              <label>Phone Number<input defaultValue="+63 912 345 6789" /></label>
-              <label>Address<input defaultValue="Barangay, Balingasag, Misamis Oriental" /></label>
+              <label>Phone Number<input placeholder="+63 900 000 0000" /></label>
+              <label>Address<input placeholder="Barangay, Balingasag, Misamis Oriental" /></label>
             </>
           )}
           <div className={signin ? 'form-grid' : ''}>
-            <label>Password<input type="password" defaultValue="password123" /></label>
-            {signin && <label>Confirm Password<input type="password" defaultValue="password123" /></label>}
+            <label>Password<input type="password" placeholder="Password" /></label>
+            {signin && <label>Confirm Password<input type="password" placeholder="Confirm password" /></label>}
           </div>
           {signin && <label>Account Type<select defaultValue="Library Member"><option>Library Member</option><option>Administrator</option></select></label>}
           {!signin && (
